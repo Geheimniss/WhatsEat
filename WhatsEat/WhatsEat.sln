@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsEat", "WhatsEat\WhatsEat.csproj", "{9D765629-8BE8-401A-9196-FB9CD5A4D76D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsEat", "WhatsEat\WhatsEat.csproj", "{CA5990FB-3095-42D9-9CAA-CCFB7153A5DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D765629-8BE8-401A-9196-FB9CD5A4D76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D765629-8BE8-401A-9196-FB9CD5A4D76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D765629-8BE8-401A-9196-FB9CD5A4D76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D765629-8BE8-401A-9196-FB9CD5A4D76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5990FB-3095-42D9-9CAA-CCFB7153A5DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5990FB-3095-42D9-9CAA-CCFB7153A5DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5990FB-3095-42D9-9CAA-CCFB7153A5DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5990FB-3095-42D9-9CAA-CCFB7153A5DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5911933E-2A50-4294-B64F-9BA7A16C5220}
+		SolutionGuid = {EDB5BE31-4526-416C-9714-8E8E55E14160}
 	EndGlobalSection
 EndGlobal

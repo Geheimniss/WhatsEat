@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj": {}
+    "D:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj": {}
   },
   "projects": {
-    "C:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj": {
+    "D:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj",
+        "projectUniqueName": "D:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj",
         "projectName": "WhatsEat",
-        "projectPath": "C:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj",
-        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\WhatsEat\\WhatsEat\\WhatsEat\\obj\\",
+        "projectPath": "D:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "D:\\WhatsEat\\WhatsEat\\WhatsEat\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,35 +39,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.9, )"
-            },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.9, )"
-            },
-            "Microsoft.AspNetCore.Identity.UI": {
-              "target": "Package",
-              "version": "[6.0.9, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[6.0.9, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "target": "Package",
-              "version": "[6.0.9, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -79,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
