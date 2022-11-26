@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Users";
+}
+@model  ICollection<WhatsEat.Areas.Identity.Data.ApplicationUser>
+
+<div class="text-center">
+    <h1 class="display-4">Пользователи</h1>
+    @if ( @Model != null && @Model.Any())
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <!--<th scope="col">#</th>-->
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Эл. Почта</th>
+                <th scope="col">Редактирование</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <!--<th scope="row">@user.Id</th>-->
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Email</td>
+                <td>
+                    <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">Редактировать</a>
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div class="text-center">
+
+</div>
