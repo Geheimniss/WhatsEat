@@ -91,3 +91,4 @@
 /WhatsEat/WhatsEat/obj/Debug/net6.0/WhatsEat.assets.cache
 /WhatsEat/WhatsEat/obj/Debug/net6.0/WhatsEat.csproj.AssemblyReference.cache
 /WhatsEat/WhatsEat/obj/Debug/net6.0/WhatsEat.GeneratedMSBuildEditorConfig.editorconfig
+dir_to_ignore/WhatsEat/WhatsEat/obj/Debug
