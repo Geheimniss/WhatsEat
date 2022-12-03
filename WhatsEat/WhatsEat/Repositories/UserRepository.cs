@@ -19,7 +19,9 @@ namespace WhatsEat.Repositories
 
         public ApplicationUser GetUser(string id)
         {
+#pragma warning disable CS8603 // Possible null reference return.
             return _context.Users.FirstOrDefault(u => u.Id == id);
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public ApplicationUser UpdateUser(ApplicationUser user)
