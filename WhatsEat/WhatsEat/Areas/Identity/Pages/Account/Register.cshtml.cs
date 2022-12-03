@@ -73,12 +73,12 @@ namespace WhatsEat.Areas.Identity.Pages.Account
         {
             [Required]
             [StringLength(255, ErrorMessage = "The first name field should have a maximum of 255 characters")]
-            [Display(Name = "Firstname")]
+            [Display(Name = "Имя")]
             public string FirstName { get; set; }
 
             [Required]
             [StringLength(255, ErrorMessage = "The last name field should have a maximum of 255 characters")]
-            [Display(Name = "Lastname")]
+            [Display(Name = "Фамилия")]
             public string LastName { get; set; }
 
             /// <summary>
@@ -97,7 +97,7 @@ namespace WhatsEat.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Пароль")]
             public string Password { get; set; }
 
             /// <summary>
@@ -105,8 +105,8 @@ namespace WhatsEat.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Подтвердите пароль")]
+            [Compare("Password", ErrorMessage = "Пароли не совпадают.")]
             public string ConfirmPassword { get; set; }
         }
 

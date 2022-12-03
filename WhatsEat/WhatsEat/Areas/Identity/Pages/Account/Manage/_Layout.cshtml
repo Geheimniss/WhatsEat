@@ -9,16 +9,18 @@
     }
 }
 
-<h1>Manage your account</h1>
+
 
 <div>
-    <h2>Change your account settings</h2>
-    <hr />
     <div class="row">
-        <div class="col-md-3">
+       <div class="col-md-4" id="manage-profile">
+        <h2>Аккаунт</h2>
+        <h5>Изменить настройки профиля</h5>
+        <br/>
             <partial name="_ManageNav" />
         </div>
-        <div class="col-md-9">
+        <div class="col-md-1"> </div>
+        <div class="col-md-7" id="manage-profile">
             @RenderBody()
         </div>
     </div>

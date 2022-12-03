@@ -11,8 +11,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using WhatsEat.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+#pragma warning disable CS0105 // The using directive for 'Microsoft.AspNetCore.Mvc' appeared previously in this namespace
 using Microsoft.AspNetCore.Mvc;
+#pragma warning restore CS0105 // The using directive for 'Microsoft.AspNetCore.Mvc' appeared previously in this namespace
+#pragma warning disable CS0105 // The using directive for 'Microsoft.AspNetCore.Mvc.RazorPages' appeared previously in this namespace
 using Microsoft.AspNetCore.Mvc.RazorPages;
+#pragma warning restore CS0105 // The using directive for 'Microsoft.AspNetCore.Mvc.RazorPages' appeared previously in this namespace
 using Microsoft.Extensions.Logging;
 
 namespace WhatsEat.Areas.Identity.Pages.Account
