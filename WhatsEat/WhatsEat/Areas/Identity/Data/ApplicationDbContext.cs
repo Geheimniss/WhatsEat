@@ -2,11 +2,20 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using WhatsEat.Entities;
 
 namespace WhatsEat.Areas.Identity.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
 {
+    public DbSet<Country> Countries { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductType> ProductTypes { get; set; }
+    public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<RecipeDetails> RecipeDetails { get; set; }
+    public DbSet<RecipeType> RecipeType { get; set; }
+    public DbSet<Region> Regions { get; set; }
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
