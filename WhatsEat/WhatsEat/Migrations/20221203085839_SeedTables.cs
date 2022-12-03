@@ -11,6 +11,7 @@ namespace WhatsEat.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             SeedRegionAndCountryTables(migrationBuilder);
+            SeedProductAndProductTypes(migrationBuilder);
         }
 
         private void SeedRegionAndCountryTables(MigrationBuilder migrationBuilder)
