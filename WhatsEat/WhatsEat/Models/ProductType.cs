@@ -1,4 +1,4 @@
-﻿namespace WhatsEat.Entities
+﻿namespace WhatsEat.Models
 {
     public class ProductType : EntityBaseClass
     {

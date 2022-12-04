@@ -1,4 +1,7 @@
-﻿namespace WhatsEat.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WhatsEat.Models
 {
     public class Country : EntityBaseClass
     {

@@ -1,21 +1,34 @@
-﻿@model WhatsEat.Entities.Recipe
+﻿@model WhatsEat.ViewModel.RecipeVM;
 
 @{
     ViewData["Title"] = "Create";
 }
-
+<head>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+          rel="stylesheet" type="text/css" />
+     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
+</head>
 <h1>Create</h1>
 
 <h4>Recipe</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="RecipeName" class="control-label">Название рецепта</label>
+                <input asp-for="RecipeName" class="form-control" />
+                <label asp-for="RecipeShortDescription" class="control-label">Короткое описание</label>
+                <input asp-for="RecipeShortDescription" class="form-control" />
+                <label asp-for="RecipeDescription" class="control-label">Как готовить?:</label>
+                <input asp-for="RecipeDescription" class="form-control" />
+                <select asp-for="RecipeTypeId" asp-items="@Model.SelectListRecipeTypes"></select>
+                <select asp-for="CountryId" asp-items="@Model.SelectListCountries"></select>
+                <select asp-for="Difficulty" asp-items="@Model.SelectListDifficulties"></select>
+            </div>
+            <div>
+                <select asp-for="productIds" asp-items="@Model.SelectListProducts" multiple></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -31,4 +44,5 @@
 @section Scripts 
 {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }

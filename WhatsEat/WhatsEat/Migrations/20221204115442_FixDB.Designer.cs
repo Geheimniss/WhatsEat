@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WhatsEat.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using WhatsEat.Areas.Identity.Data;
 namespace WhatsEat.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221204115442_FixDB")]
+    partial class FixDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,7 +174,7 @@ namespace WhatsEat.Migrations
 
                     b.HasIndex("recipeDetailsId");
 
-                    b.ToTable("ProductRecipeDetails", (string)null);
+                    b.ToTable("ProductRecipeDetails");
                 });
 
             modelBuilder.Entity("WhatsEat.Areas.Identity.Data.ApplicationUser", b =>
@@ -268,7 +271,7 @@ namespace WhatsEat.Migrations
 
                     b.HasIndex("regionId");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("WhatsEat.Models.Product", b =>
@@ -290,7 +293,7 @@ namespace WhatsEat.Migrations
 
                     b.HasIndex("productTypeId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("WhatsEat.Models.ProductType", b =>
@@ -307,7 +310,7 @@ namespace WhatsEat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductTypes", (string)null);
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("WhatsEat.Models.Recipe", b =>
@@ -324,7 +327,7 @@ namespace WhatsEat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("WhatsEat.Models.RecipeDetails", b =>
@@ -365,7 +368,7 @@ namespace WhatsEat.Migrations
 
                     b.HasIndex("recipeTypeId");
 
-                    b.ToTable("RecipeDetails", (string)null);
+                    b.ToTable("RecipeDetails");
                 });
 
             modelBuilder.Entity("WhatsEat.Models.RecipeType", b =>
@@ -382,7 +385,7 @@ namespace WhatsEat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RecipeType", (string)null);
+                    b.ToTable("RecipeType");
                 });
 
             modelBuilder.Entity("WhatsEat.Models.Region", b =>
@@ -399,7 +402,7 @@ namespace WhatsEat.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Regions", (string)null);
+                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
