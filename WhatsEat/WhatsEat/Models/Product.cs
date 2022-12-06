@@ -1,9 +1,9 @@
-﻿namespace WhatsEat.Entities
+﻿namespace WhatsEat.Models
 {
     public class Product : EntityBaseClass
     {
+        public List<RecipeDetails> recipeDetails { get; set; }
         public int productTypeId { get; set; }
         public ProductType productType { get; set; }
-        public List<Recipe> recipesDetails { get; set; } = new List<Recipe>();
     }
 }

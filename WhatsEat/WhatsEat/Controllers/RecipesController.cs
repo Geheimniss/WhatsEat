@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WhatsEat.Areas.Identity.Data;
-using WhatsEat.Entities;
+using WhatsEat.Models;
+using WhatsEat.ViewModel;
 
 namespace WhatsEat.Controllers
 {
@@ -22,7 +24,7 @@ namespace WhatsEat.Controllers
         // GET: Recipes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Recipes.ToListAsync());
+            return View(await _context.Recipes.ToListAsync());
         }
 
         // GET: Recipes/Details/5
@@ -46,7 +48,12 @@ namespace WhatsEat.Controllers
         // GET: Recipes/Create
         public IActionResult Create()
         {
-            return View();
+            RecipeVM recipeVM = new RecipeVM();
+            recipeVM.SelectListRecipeTypes = new SelectList(_context.RecipeType.ToList(), nameof(RecipeType.Id), nameof(RecipeType.Name));
+            recipeVM.SelectListCountries = new SelectList(_context.Countries.ToList(), nameof(Country.Id), nameof(Country.Name));
+            recipeVM.SelectListDifficulties = new SelectList(new List<string>() { "Легко", "Нормально", "Сложно" });
+            recipeVM.SelectListProducts = new SelectList(_context.Products.ToList(), nameof(Product.Id), nameof(Product.Name));
+            return View(recipeVM);
         }
 
         // POST: Recipes/Create
@@ -54,15 +61,38 @@ namespace WhatsEat.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Recipe recipe)
+        public async Task<IActionResult> Create(RecipeVM recipeModel)
         {
+            ModelState.Remove("SelectListRecipeTypes");
+            ModelState.Remove("SelectListCountries");
+            ModelState.Remove("SelectListDifficulties");
+            ModelState.Remove("SelectListProducts");
+
             if (ModelState.IsValid)
             {
-                _context.Add(recipe);
+                Recipe recipe = new Recipe();
+                RecipeDetails recipeDetails = new RecipeDetails();
+                recipe.Name = recipeModel.RecipeName;
+                _context.Recipes.Add(recipe);
+                _context.SaveChanges();
+                recipeDetails.shortDescription = recipeModel.RecipeShortDescription;
+                recipeDetails.description = recipeModel.RecipeDescription;
+                recipeDetails.recipeTypeId = recipeModel.RecipeTypeId;
+                recipeDetails.countryId = recipeModel.CountryId;
+                recipeDetails.difficulty = recipeModel.Difficulty;
+                recipeDetails.recipeId = recipe.Id;
+                for (int i = 0; i < recipeModel.productIds.Length; i++)
+                {
+                    Product product = _context.Products.ToList().Where(p => p.Id == recipeModel.productIds[i]).FirstOrDefault();
+                    recipeDetails.products.Add(product);
+                }
+                _context.RecipeDetails.Add(recipeDetails);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
-            return View(recipe);
+
+            return View(recipeModel);
         }
 
         // GET: Recipes/Edit/5
@@ -148,14 +178,14 @@ namespace WhatsEat.Controllers
             {
                 _context.Recipes.Remove(recipe);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool RecipeExists(int id)
         {
-          return _context.Recipes.Any(e => e.Id == id);
+            return _context.Recipes.Any(e => e.Id == id);
         }
     }
 }
