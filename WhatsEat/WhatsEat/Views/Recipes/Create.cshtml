@@ -20,11 +20,13 @@
                 <label asp-for="RecipeShortDescription" class="control-label">Короткое описание</label>
                 <input asp-for="RecipeShortDescription" class="form-control" />
                 <label asp-for="RecipeDescription" class="control-label">Как готовить?:</label>
-                <input asp-for="RecipeDescription" class="form-control" />
+                <textarea asp-for="RecipeDescription" class="form-control"></textarea>
                 <select asp-for="CountryId" asp-items="@Model.SelectListCountries"></select>
                 <select asp-for="RecipeTypeId" asp-items="@Model.SelectListRecipeTypes"></select>
                 <select asp-for="Difficulty" asp-items="@Model.SelectListDifficulties"></select>
 
+                <br />
+                <br />
                 <table class="table table-bordered table-dark">
                     <thead>
                         <tr>

@@ -95,32 +95,6 @@ namespace WhatsEat.Controllers
             return View(vm);
         }
 
-        //public List<CheckBoxOption> FillCheckboxList()
-        //{
-        //    List<CheckBoxOption> checkBoxes = new List<CheckBoxOption>();
-        //    List<Product> products = _context.Products.ToList();
-        //
-        //    for(int i = 1; i < _context.Products.Count(); i++)
-        //    {
-        //        CheckBoxOption option = new CheckBoxOption();
-        //        option.isChecked = false;
-        //        option.Name = products[i].Name;
-        //        option.productId = products[i].Id;
-        //        checkBoxes.Add(option);
-        //    }
-        //
-        //    return checkBoxes;
-        //}
-        private List<string> FillProductTypesList()
-        {
-            List<string> types = new List<string>();
-            foreach(var item in _context.ProductTypes.ToList())
-            {
-                types.Add(item.Name);
-            }
-            return types;
-        }
-
         // POST: Recipes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -150,14 +124,14 @@ namespace WhatsEat.Controllers
                 recipeDetails.recipeTypeId = recipeModel.RecipeTypeId;
                 recipeDetails.countryId = recipeModel.CountryId;
                 recipeDetails.difficulty = recipeModel.Difficulty;
-                recipeDetails.recipeId = recipe.Id;
+                recipeDetails.recipeId = _context.Recipes.Where(r => r.Name == recipeModel.RecipeName).FirstOrDefault().Id;
                 for (int i = 0; i < recipeModel.productIds.Count; i++)
                 {
                     Product product = _context.Products.ToList().Where(p => p.Id == recipeModel.productIds[i]).FirstOrDefault();
                     recipeDetails.products.Add(product);
                 }
                 _context.RecipeDetails.Add(recipeDetails);
-
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
 
             }
