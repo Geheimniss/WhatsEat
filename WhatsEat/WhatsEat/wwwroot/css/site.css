@@ -15,8 +15,10 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    min-height: 100%;
     background-color: #d1c2b8;
+    display: flex;
+    flex-direction: column;
 }
 
 /*задний фон навигационной панели*/
@@ -151,16 +153,17 @@ a:hover{
 }
 
 #home-page.col-md-12 {
-    width: 1000px;
-    height: 400px;
+    width: 75%;
+    height: 450px;
     border-radius: 8px;
     padding: 20px 40px;
     box-shadow: 1px 0px 20px 0px #381d1b54;
-    margin-top: 30px;
+    margin-top: 2%;
     font-family: Garamond;
     text-align:center;
     background-image: url(../main.jpeg);
-    margin-left: 70px;
+    margin-left: 12%;
+    margin-right: 12%
 }
  
 
@@ -179,11 +182,30 @@ a:hover{
 
     #parag {
         font-weight:bolder;
+        color:#381d1b;
     }
 
-   #p{
-       font-size:10px;
-       text-align: left;
-       font-weight: bolder;
+#p {
+    font-size: 12px;
+    text-align: left;
+    font-weight: bolder;
+}
 
-   }
+#recipe.form-control {
+    padding: 1%;
+    width: 30%;
+    background-color: #e3d6cc;
+    border-color: #381d1b;
+}
+
+#cook.form-control {
+    width: 50%;
+    padding: 10%;
+    background-color: #e3d6cc;
+    border-color: #381d1b;
+}
+
+.table {
+    background-color: #e3d6cc;
+    border-color: #381d1b;
+}
