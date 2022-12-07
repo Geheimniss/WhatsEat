@@ -150,14 +150,14 @@ namespace WhatsEat.Controllers
                 recipeDetails.recipeTypeId = recipeModel.RecipeTypeId;
                 recipeDetails.countryId = recipeModel.CountryId;
                 recipeDetails.difficulty = recipeModel.Difficulty;
-                recipeDetails.recipeId = recipe.Id;
+                recipeDetails.recipeId = _context.Recipes.Where(r => r.Name == recipeModel.RecipeName).FirstOrDefault().Id;
                 for (int i = 0; i < recipeModel.productIds.Count; i++)
                 {
                     Product product = _context.Products.ToList().Where(p => p.Id == recipeModel.productIds[i]).FirstOrDefault();
                     recipeDetails.products.Add(product);
                 }
                 _context.RecipeDetails.Add(recipeDetails);
-
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
 
             }
