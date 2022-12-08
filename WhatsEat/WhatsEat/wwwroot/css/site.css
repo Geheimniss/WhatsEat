@@ -16,22 +16,30 @@ html {
 
 body {
     min-height: 100%;
-    background-color: #d1c2b8;
+    /*background-color: #d1c2b8;*/
     display: flex;
     flex-direction: column;
+    margin-bottom: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*задний фон навигационной панели*/
 #navbar-bg {
-    background-color: #e3d6cc;
+    background-color: #e9ecefeb;
+    opacity: 0.9;
 }
 
 /*кнопки войти/выйти*/
 #btn.nav-link {
-    border-radius: 40px;
+    color: #f8f9fa;
+    border-color: #0f5132;
+    transition: 0.5s;
     background-color: #381d1b;
-    color: #ccbbba;
+    text-align: center;
+    border-radius: 100px;
 }
+
 
 /*кнопка аккаунта*/
 #manage.nav-link {
@@ -40,18 +48,22 @@ body {
 
 /*кнопк»*/
 #body-btn {
-    background-color: #381d1b;
-    color: #ccbbba;
-    border-color: #849051;
+    background-color: #222f3a;
+    color: #f8f9fa;
+    border-color: #222f3a;
+    transition: 0.5s;
+    text-align: center;
 }
 
 /*цвет при наведении на кнопку*/
- #body-btn:hover {
-        color: #849051;
- }
+    #body-btn:hover {
+        top: -4px;
+        left: -4px;
+        transform: scale(0.8);
+    }
 
     #body-btn:focus {
-        box-shadow: 0px 0px 5px 5px #849051;
+        top: -4px;
     }
 
  /*цвет заголовков*/
@@ -71,11 +83,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /*форма входа в аккаунт*/
 #account {
-    width: 400px;
-    border-radius: 8px;
+    width: 33%;
+    border-radius: 5%;
     padding: 20px 40px;
-    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
     margin-top: 30px;
+    background-color: #adb5bde6;
+    opacity: 0.9;
 }
 
 /*форма */
@@ -86,8 +99,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
     .form-control:focus {
-        box-shadow: 0px 0px 11px 2px #849051;
-        border-color: #849051;
+        box-shadow: 0px 0px 11px 2px #e9ecefeb;
+        border-color: #e9ecefeb;
+        ;
     }
     .form-control:active {
         background-color: #FBF7F4;
@@ -123,7 +137,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-check-input{
     background-color: #FBF7F4;
-    border-color: #FBF7F4;
+    border-color: #381d1b;
 }
 
 .form-check-input:checked{
@@ -151,20 +165,6 @@ a{
 a:hover{
     color: #381d1b;
 }
-
-#home-page.col-md-12 {
-    width: 75%;
-    height: 450px;
-    border-radius: 8px;
-    padding: 20px 40px;
-    box-shadow: 1px 0px 20px 0px #381d1b54;
-    margin-top: 2%;
-    font-family: Garamond;
-    text-align:center;
-    background-image: url(../main.jpeg);
-    margin-left: 12%;
-    margin-right: 12%
-}
  
 
     #home-page.col-md-12:hover {
@@ -174,38 +174,58 @@ a:hover{
     cursor: pointer;
     transition-duration:1s;
 }
- 
-    #header{
-        font-weight:bolder;
-        margin-top: 70px;
-    }
+
+#header {
+    font-weight: bold;
+    margin-top: 15%;
+    font-family: Georgia;
+    font-size: 3em;
+}
 
     #parag {
-        font-weight:bolder;
+        font-weight: bold;
         color:#381d1b;
+        font-family: Garamond;
+        font-size: 20px;
     }
 
 #p {
     font-size: 12px;
-    text-align: left;
     font-weight: bolder;
+    color: darkred;
 }
 
 #recipe.form-control {
     padding: 1%;
     width: 30%;
-    background-color: #e3d6cc;
+    background-color: #fffdf6;
     border-color: #381d1b;
 }
 
 #cook.form-control {
     width: 50%;
     padding: 10%;
-    background-color: #e3d6cc;
+    background-color: #fffdf6;
     border-color: #381d1b;
 }
 
 .table {
-    background-color: #e3d6cc;
+    background-color: #fffdf6;
     border-color: #381d1b;
+}
+
+.recipe-box {
+    box-shadow: 1px 0px 20px 0px #381d1b54;
+}
+
+.bg-layout {
+    background-image: url(../food.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-bg {
+    background-image: url(../login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
