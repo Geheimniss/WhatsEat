@@ -11,16 +11,19 @@ using WhatsEat.Models;
 using WhatsEat.ViewModel;
 using System.Security.Cryptography.Xml;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using WhatsEat.Views.Fridge;
 
 namespace WhatsEat.Controllers
 {
     public class RecipesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public RecipesController(ApplicationDbContext context)
+        public RecipesController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Recipes
@@ -37,14 +40,25 @@ namespace WhatsEat.Controllers
                 return NotFound();
             }
 
-            var recipe = await _context.Recipes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var recipe = _context.Recipes.Include(r => r.recipeDetails).Where(r => r.Id == id).FirstOrDefault();
+            recipe.recipeDetails = _context.RecipeDetails.Include(r => r.products).Where(r => r.Id == recipe.recipeDetails.Id).FirstOrDefault();
+
             if (recipe == null)
             {
                 return NotFound();
             }
 
-            return View(recipe);
+            RecipeVM vm = new RecipeVM();
+            vm.RecipeId = recipe.Id;
+            vm.RecipeName = recipe.Name;
+            vm.RecipeShortDescription = recipe.recipeDetails.shortDescription;
+            vm.RecipeDescription = recipe.recipeDetails.description;
+            vm.Difficulty = recipe.recipeDetails.difficulty;
+            vm.Products = recipe.recipeDetails.products;
+            recipe.recipeDetails = _context.RecipeDetails.Include(r => r.country).Where(r => r.Id == recipe.recipeDetails.Id).FirstOrDefault();
+            vm.Country = recipe.recipeDetails.country;
+            vm.RecipeImage = recipe.recipeDetails.recipeImage;
+            return View(vm);
         }
 
         // GET: Recipes/Create
@@ -111,11 +125,21 @@ namespace WhatsEat.Controllers
             ModelState.Remove("Name");
             ModelState.Remove("ProductIds");
             ModelState.Remove("Checkboxes");
-
+            ModelState.Remove("Country");
+            ModelState.Remove("Id");
+            ModelState.Remove("RecipeImage");
             if (ModelState.IsValid)
             {
                 Recipe recipe = new Recipe();
                 RecipeDetails recipeDetails = new RecipeDetails();
+                if (recipeModel.Photo != null)
+                {
+                    string folder = "images/recipeimages/";
+                    folder += Guid.NewGuid().ToString() + recipeModel.Photo.FileName;
+                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                    await recipeModel.Photo.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                    recipeDetails.recipeImage = "/" + folder;
+                }
                 recipe.Name = recipeModel.RecipeName;
                 _context.Recipes.Add(recipe);
                 _context.SaveChanges();
@@ -130,64 +154,13 @@ namespace WhatsEat.Controllers
                     Product product = _context.Products.ToList().Where(p => p.Id == recipeModel.productIds[i]).FirstOrDefault();
                     recipeDetails.products.Add(product);
                 }
+                recipeDetails.recipe = recipe;
                 _context.RecipeDetails.Add(recipeDetails);
                 _context.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
-
             }
-
             return View(recipeModel);
-        }
-
-        // GET: Recipes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Recipes == null)
-            {
-                return NotFound();
-            }
-
-            var recipe = await _context.Recipes.FindAsync(id);
-            if (recipe == null)
-            {
-                return NotFound();
-            }
-            return View(recipe);
-        }
-
-        // POST: Recipes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Recipe recipe)
-        {
-            if (id != recipe.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(recipe);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RecipeExists(recipe.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(recipe);
         }
 
         // GET: Recipes/Delete/5

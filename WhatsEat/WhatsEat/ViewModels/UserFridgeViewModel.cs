@@ -9,5 +9,6 @@ namespace WhatsEat.ViewModel
         public string UserId { get;set;}
         public List<Product> Products { get;set;}
         public List<ProductType> ProductTypes { get; set; }
+
     }
 }

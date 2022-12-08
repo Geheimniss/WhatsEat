@@ -1,12 +1,12 @@
 ﻿@model WhatsEat.ViewModel.UserFridgeViewModel
 @{
 }
-<h1>@Model.UserId</h1>
+<h1>Холодильник</h1>
 <table class="table table-bordered table-dark">
     @*<thead>
-        <th>
-            Холодильник
-        </th>
+    <th>
+    Холодильник
+    </th>
     </thead>*@
     <tbody>
         @foreach (ProductType type in Model.ProductTypes)
@@ -18,12 +18,10 @@
                 <td>
                     @foreach (var product in @Model.Products)
                     {
-                        <p>
-                            if (product.productType.Name == type.Name)
-                            {
-                                @product.Name
-                            }
-                        </p>
+                        @if (product.productType.Name == type.Name)
+                        {
+                           <span class="badge bg-light text-dark">@product.Name</span>
+                        }
                     }
                 </td>
             </tr>
@@ -31,7 +29,7 @@
     </tbody>
 </table>
 <div>
-    <a asp-controller="Home" asp-action="Index" class="btn-primary">
-        Loh
+    <a asp-action="AddProducts" class="btn-outline-dark">
+        Добавить продукты
     </a>
 </div>

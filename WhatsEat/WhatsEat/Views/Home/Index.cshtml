@@ -1,23 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-   
+
 <div class="row">
-   <div class="col-md-12" id="home-page">
-       <h1 id="header">Whats Eat?</h1> 
-       <br />
-       <p1 id="parag">Whats Eat - поиск рецептов по ингредиентам. <br> 
-           Он подскажет, какие рецепты можно приготовить <br>
-           из того что есть в вашем холодильнике прямо сейчас.</p1>
-           <br/>
-      <div style="position:relative; top: 10%;">
-                    <button id="body-btn" type="submit" class="btn btn-lg btn-primary">Искать рецепты</button>
-                </div>
-           <div style="position:relative; top: 30%;">
-           <p id="p">* Чтобы получить доступ к личному холодильнику необходимо Авторизоваться</p>
-  </div>
-       </div>
+    <div class="col-md-12" id="home-page">
+        <h1 id="header">Whats Eat?</h1>
+        <br />
+        <p1 id="parag">
+            Whats Eat - поиск рецептов по ингредиентам. <br>
+            Он подскажет, какие рецепты можно приготовить <br>
+            из того что есть в вашем холодильнике прямо сейчас.
+        </p1>
+        <br />
+        <div style="position:relative; top: 10%;">
+            <form asp-controller="Recipes" asp-action="Index">
+                <button id="body-btn" type="submit" class="btn btn-lg btn-primary">Искать рецепты</button>
+            </form>
+        </div>
+        <div style="position:relative; top: 30%;">
+            <p id="p">* Чтобы получить доступ к личному холодильнику необходимо Авторизоваться</p>
+        </div>
+    </div>
 </div>
 
 
-  
+

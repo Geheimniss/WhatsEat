@@ -1,5 +1,4 @@
-﻿@model Recipe
-
+﻿@model WhatsEat.ViewModel.RecipeVM
 @{
     ViewData["Title"] = "Details";
 }
@@ -9,16 +8,52 @@
 <div>
     <h4>Recipe</h4>
     <hr />
+    <img src="@Model.RecipeImage" />
     <dl class="row">
+        <dt class="col-sm-2">
+            Ингредиенты:
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach (Product ingredient in Model.Products)
+                {
+                    <li>@ingredient.Name</li>
+                }
+            </ul>
+            
+        </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            Название:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Model.RecipeName
+        </dd>
+        <dt class="col-sm-2">
+            Страна:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Country.Name
+        </dd>
+        <dt class="col-sm-2">
+            Короткое описание:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.RecipeShortDescription
+        </dd>
+        <dt class="col-sm-2">
+            Сложность:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Difficulty
+        </dd>
+        <dt class="col-sm-2">
+            Как готовить:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.RecipeDescription)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

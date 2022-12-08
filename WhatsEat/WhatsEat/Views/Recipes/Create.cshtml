@@ -1,5 +1,4 @@
 ﻿@model WhatsEat.ViewModel.RecipeVM;
-
 <head>
     <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
           rel="stylesheet" type="text/css" />
@@ -11,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-12" id="create-page">
-        <form asp-action="Create">
+        <form enctype="multipart/form-data" asp-controller="Recipes" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                
@@ -19,12 +18,16 @@
                 <input asp-for="RecipeName" class="form-control" id="recipe"/>
                 <label asp-for="RecipeShortDescription" class="control-label">Описание</label>
                 <input asp-for="RecipeShortDescription" class="form-control" id="recipe"/>
-                <label asp-for="RecipeDescription" class="control-label">Как готовить:</label>
-                <textarea asp-for="RecipeDescription" class="form-control" id="cook"></textarea>
+                <label asp-for="RecipeDescription" class="form-label">Как готовить:</label>
+                <textarea asp-for="RecipeDescription" class="form-control"></textarea>
                 <select asp-for="CountryId" asp-items="@Model.SelectListCountries"></select>
                 <select asp-for="RecipeTypeId" asp-items="@Model.SelectListRecipeTypes"></select>
                 <select asp-for="Difficulty" asp-items="@Model.SelectListDifficulties"></select>
-               
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input asp-for="Photo" class="custom-file-input" id="customFile" />
+                    </div>
+                </div>
                 
                 <table style="margin-top:5%;" class="table table-bordered">
                     <thead>
@@ -50,7 +53,7 @@
                                         if (checkbox.productTypeName == type.Name)
                                         {
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="@checkbox.productId" name="@Model.productIds" id="checkbox_@checkbox.productId" checked="@checkbox.isChecked">
+                                                <input class="form-check-input" type="checkbox" value="@checkbox.productId" name="productIds" id="checkbox_@checkbox.productId" checked="@checkbox.isChecked">
                                                 <label class="form-check-label" for="checkbox_@checkbox.productId">@checkbox.Name</label>
                                             </div>
                                         }
@@ -72,8 +75,11 @@
     </div>
 </div>
 @section Scripts
-    {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
+{
+    <script>
+        tinymce.init({
+            selector: 'textarea#RecipeDescription',
+            width: 600
+        });
+    </script>
 }

@@ -16,5 +16,6 @@ namespace WhatsEat.Models
         public List<Product> products { get; set; } = new List<Product> { };
         public string description { get; set; }
         public string difficulty { get; set; }
+        public string recipeImage { get; set; }
     }
 }

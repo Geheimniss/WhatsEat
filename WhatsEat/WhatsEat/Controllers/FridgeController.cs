@@ -1,52 +1,91 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WhatsEat.Areas.Identity.Data;
+using WhatsEat.Models;
 using WhatsEat.ViewModel;
+using WhatsEat.ViewModels;
+using WhatsEat.Views.Fridge;
 
 namespace WhatsEat.Controllers
 {
     public class FridgeController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly ApplicationDbContext _context;
-        
-
-        public FridgeController(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager)
+        public FridgeController(ApplicationDbContext context)
         {
             _context = context;
         }
-        
+
         // GET: FridgeController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             UserFridgeViewModel fridgeVM = new UserFridgeViewModel();
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            fridgeVM.UserId = userId;
-            fridgeVM.Products = _context.Users.Where(u => u.Id == userId).FirstOrDefault().UserProducts.ToList();
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var products = _context.Users.Include(u => u.UserProducts).ToList();
+            fridgeVM.Products = _context.Users.Where(u => u.Id == userId).FirstOrDefault().UserProducts;
             fridgeVM.ProductTypes = _context.ProductTypes.ToList();
             return View(fridgeVM);
         }
 
         // GET: FridgeController/AddProducts
-        public ActionResult AddProducts()
+        [HttpGet]
+        public IActionResult AddProducts()
         {
-            return View();
+            ProductVM productVM = new ProductVM();
+            productVM.productTypes = _context.ProductTypes.ToList();
+            productVM.products = _context.Products.ToList();
+            productVM.Checkboxes = new List<CheckBoxOption>();
+            foreach (Product product in productVM.products)
+            {
+                productVM.Checkboxes.Add(new CheckBoxOption()
+                {
+                    isChecked = false,
+                    Name = product.Name,
+                    productId = product.Id,
+                    productTypeName = product.productType.Name
+                });
+            }
+            return View(productVM);
         }
 
         // POST: FridgeController/AddProducts
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddProducts(IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public IActionResult AddProducts(ProductVM productVM)
         {
-           
-             return View();
-            
+            ModelState.Remove("productTypes");
+            ModelState.Remove("Checkboxes");
+            ModelState.Remove("products");
+
+            if (ModelState.IsValid)
+            {
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
+
+                foreach (var productId in productVM.productIds)
+                {
+                    if (user.UserProducts.Where(p => p.Id == productId).FirstOrDefault() != null)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        user.UserProducts.Add(_context.Products.Where(p => p.Id == productId).FirstOrDefault());
+                        _context.SaveChanges();
+                    }
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: FridgeController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View();
         }
@@ -54,7 +93,7 @@ namespace WhatsEat.Controllers
         // POST: FridgeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -67,7 +106,7 @@ namespace WhatsEat.Controllers
         }
 
         // GET: FridgeController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View();
         }
@@ -75,7 +114,7 @@ namespace WhatsEat.Controllers
         // POST: FridgeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult Delete(int id, IFormCollection collection)
         {
             try
             {

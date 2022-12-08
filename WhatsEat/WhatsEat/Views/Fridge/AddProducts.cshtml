@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using WhatsEat.Views.Fridge
+@model WhatsEat.ViewModels.ProductVM
+
+<head>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+          rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
+</head>
+
+<form asp-controller="Fridge" asp-action="AddProducts" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <table class="table table-bordered table-dark">
+            <tbody>
+                @foreach (ProductType type in Model.productTypes)
+                {
+                    <tr>
+                        <th scope="col">
+                            @type.Name
+                        </th>
+                        <td>
+                            @foreach (CheckBoxOption checkbox in @Model.Checkboxes)
+                            {
+                                if (checkbox.productTypeName == type.Name)
+                                {
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="@checkbox.productId" name="productIds" id="checkbox_@checkbox.productId" checked="@checkbox.isChecked">
+                                        <label class="form-check-label" for="checkbox_@checkbox.productId">@checkbox.Name</label>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="AddProducts" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts
+    {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

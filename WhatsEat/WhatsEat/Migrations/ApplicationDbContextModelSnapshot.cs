@@ -364,6 +364,10 @@ namespace WhatsEat.Migrations
                     b.Property<int>("recipeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("recipeImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("recipeTypeId")
                         .HasColumnType("int");
 
