@@ -1,6 +1,7 @@
 html {
   font-size: 14px;
   height:100%;
+  font-family: Georgia;
 }
 
 @media (min-width: 768px) {
@@ -34,7 +35,6 @@ body {
 #btn.nav-link {
     color: #f8f9fa;
     border-color: #0f5132;
-    transition: 0.5s;
     background-color: #381d1b;
     text-align: center;
     border-radius: 100px;
@@ -44,7 +44,20 @@ body {
 /*кнопка аккаунта*/
 #manage.nav-link {
     color: #381d1b;
+    transition: 0.5s;
+    font-size: large;
+    font-family: georgia;
 }
+
+    #manage.nav-link:hover {
+        color: #381d1b;
+        top: -4px;
+        left: -4px;
+        transform: scale(0.8);
+        box-shadow: 0px 0px 5px 5px #f8f9fa;
+
+    }
+
 
 /*кнопк»*/
 #body-btn {
@@ -218,8 +231,8 @@ a:hover{
     border-color: #381d1b;
 }
 
-.table {
-    background-color: #e3e3e3eb;
+#create.table {
+    background-color: #adb5bdc7;
     border-color: #381d1b;
 }
 
@@ -243,7 +256,8 @@ a:hover{
 }
 
 #email-verification {
-    color: #f8f9fa;
+    color: #e9ecef;
+    font-size: x-small;
 }
 
 #personal-data {
@@ -255,12 +269,31 @@ a:hover{
 }
 
 .create-bg {
-    background-image: url(../create.jpg);
-    background-repeat: repeat;
+    background-image: url(../create1.jpg);
+    background-attachment: fixed;
     background-size: cover;
 }
 
-.form-group{
-    border-color: antiquewhite;
-    border-radius: 20%;
+.recipe-box {
+    color: #381d1b;
+    font-family: georgia;
+    font-size: larger;
+    font-weight: bolder;
 }
+
+.users-bg {
+    background-image: url(../user.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.user-box {
+    border-color: #dee2e6;
+    background-color: #adb5bdba;
+    border-radius: 20px;
+    width: 60%;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+

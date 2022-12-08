@@ -24,33 +24,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>
-                            <a class="dropdown-item" asp-area="" asp-controller="Recipes" asp-action="Index">Recipes</a>
-                        </li>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="manage" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Role Access Demo
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" asp-area="" asp-controller="RoleViews" asp-action="Index">Roles</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="RoleViews" asp-action="Manager">Manager</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-area="" asp-controller="RoleViews" asp-action="Admin">Admin</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        }
+                    <ul class="navbar-nav flex-grow-1">            
                        @if (User.IsInRole("Администратор"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" id="manage" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                                <a class="nav-link" id="manage" asp-area="" asp-controller="User" asp-action="Index">Пользователи</a>
                             </li>
                         }
                     </ul>

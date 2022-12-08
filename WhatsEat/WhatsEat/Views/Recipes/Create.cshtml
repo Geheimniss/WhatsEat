@@ -23,18 +23,21 @@
                 <input asp-for="RecipeShortDescription" class="form-control" id="recipe"/>
                 <br/>
                 </div>
-                <label asp-for="RecipeDescription" class="form-label">Как готовить:</label>
+                <label asp-for="RecipeDescription" class="form-label" style="color: #381d1b; font-family: georgia; font-size: larger; font-weight: bolder;">Как готовить:</label>
                 <textarea asp-for="RecipeDescription" class="form-control"></textarea>
                 <select asp-for="CountryId" asp-items="@Model.SelectListCountries"></select>
                 <select asp-for="RecipeTypeId" asp-items="@Model.SelectListRecipeTypes"></select>
                 <select asp-for="Difficulty" asp-items="@Model.SelectListDifficulties"></select>
+                <br/>
+                <p1>Добавить фото</p1>
+
                 <div class="form-group">
                     <div class="custom-file">
                         <input asp-for="Photo" class="custom-file-input" id="customFile" />
                     </div>
                 
                 
-                <table style="margin-top:5%;" class="table table-bordered">
+                <table style="margin-top:5%;" class="table table-bordered" id="create">
                     <thead>
                         <tr>
                             <th scope="col">
@@ -70,11 +73,11 @@
                 </table>
              </div>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Create" class="btn btn-primary" id="body-btn" Создать/>
                 </div>
             </div>
             <div>
-                <a asp-action="Index">Back to List</a>
+                <a asp-action="Index">Назад</a>
             </div>
         </form>
     </div>

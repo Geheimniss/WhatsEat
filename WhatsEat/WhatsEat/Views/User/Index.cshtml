@@ -6,7 +6,9 @@
 }
 @model  ICollection<WhatsEat.Areas.Identity.Data.ApplicationUser>
 
+<body class="users-bg">
 <div class="text-center">
+    <div class="user-box">
     <h1 class="display-4">Пользователи</h1>
     @if ( @Model != null && @Model.Any())
     {
@@ -36,8 +38,10 @@
             </tbody>
         </table>
     }
+    </div>
 </div>
 
 <div class="text-center">
 
 </div>
+</body>
