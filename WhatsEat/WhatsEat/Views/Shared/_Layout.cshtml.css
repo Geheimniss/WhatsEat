@@ -40,8 +40,10 @@ button.accept-policy {
 }
 
 .footer {
-  bottom: auto;
-  width: 100%;
-  white-space: nowrap;
-  margin-top: auto;
+    bottom: auto;
+    width: 100%;
+    white-space: nowrap;
+    margin-top: auto;
+    background-color: #e9ecefeb;
+    opacity: 0.9;
 }

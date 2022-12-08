@@ -14,7 +14,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-               
+               <div class="recipe-box">
                 <label asp-for="RecipeName" class="control-label">Название рецепта</label>
                 <input asp-for="RecipeName" class="form-control" id="recipe"/>
                 <label asp-for="RecipeShortDescription" class="control-label">Описание</label>
@@ -24,7 +24,7 @@
                 <select asp-for="CountryId" asp-items="@Model.SelectListCountries"></select>
                 <select asp-for="RecipeTypeId" asp-items="@Model.SelectListRecipeTypes"></select>
                 <select asp-for="Difficulty" asp-items="@Model.SelectListDifficulties"></select>
-               
+               </div>
                 
                 <table style="margin-top:5%;" class="table table-bordered">
                     <thead>
