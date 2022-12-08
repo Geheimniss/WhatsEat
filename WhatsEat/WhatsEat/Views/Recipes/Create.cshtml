@@ -7,7 +7,7 @@
 <h1>Создать рецепт</h1>
 
 <br />
-
+<body class="create-bg">
 <div class="row">
     <div class="col-md-12" id="create-page">
         <form enctype="multipart/form-data" asp-controller="Recipes" asp-action="Create" method="post">
@@ -15,9 +15,14 @@
             <div class="form-group">
                <div class="recipe-box">
                 <label asp-for="RecipeName" class="control-label">Название рецепта</label>
+                <br/>
                 <input asp-for="RecipeName" class="form-control" id="recipe"/>
+                <br/>
                 <label asp-for="RecipeShortDescription" class="control-label">Описание</label>
+                <br/>
                 <input asp-for="RecipeShortDescription" class="form-control" id="recipe"/>
+                <br/>
+                </div>
                 <label asp-for="RecipeDescription" class="form-label">Как готовить:</label>
                 <textarea asp-for="RecipeDescription" class="form-control"></textarea>
                 <select asp-for="CountryId" asp-items="@Model.SelectListCountries"></select>
@@ -27,7 +32,7 @@
                     <div class="custom-file">
                         <input asp-for="Photo" class="custom-file-input" id="customFile" />
                     </div>
-                </div>
+                
                 
                 <table style="margin-top:5%;" class="table table-bordered">
                     <thead>
@@ -63,7 +68,7 @@
                         }
                     </tbody>
                 </table>
-             
+             </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
@@ -74,6 +79,7 @@
         </form>
     </div>
 </div>
+</body>
 @section Scripts
 {
     <script>

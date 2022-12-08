@@ -70,6 +70,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: #381d1b;
     text-align: center;
+    font-family:Georgia;
 }
 
 .col-md-4 {
@@ -86,8 +87,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 33%;
     border-radius: 5%;
     padding: 20px 40px;
-    margin-top: 30px;
-    background-color: #adb5bde6;
+    margin-top: 3%;
+    background-color: #8c878b;
     opacity: 0.9;
 }
 
@@ -101,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
     .form-control:focus {
         box-shadow: 0px 0px 11px 2px #e9ecefeb;
         border-color: #e9ecefeb;
-        ;
+        
     }
     .form-control:active {
         background-color: #FBF7F4;
@@ -111,28 +112,36 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 #manage-profile.nav-link {
-    color: #381d1b
+    color: #381d1b;
     
 }
 
     #manage-profile.nav-link:hover {
-        background-color: #849051;
-        opacity: 0.4;
-        color: #381d1b
+        opacity: 0.9;
+        background-color: #222f3a;
+        color: #f8f9fa;
+        border-color: #222f3a;
     }
 
-#manage-profile.nav-link.active{
-    background-color: #849051;   
-}
+    #manage-profile.nav-link.active {
+        background-color: #222f3a;
+        color: #f8f9fa;
+    }
 
-#manage-profile.col-md-4{
+#manage-profile.col-md-4 {
     margin-top: 30px;
-    border-right: solid 1px black;
+    border-radius: 5%;
+    padding: 20px 40px;
+    margin-top: 3%;
+    background-color: #adb5bde6;
+    opacity: 0.9;
 }
 
 #manage-profile.col-md-7 {
     margin-top: 30px;
-
+    border-radius: 5%;
+    padding: 20px 40px;
+    margin-top: 3%;
 }
 
 .form-check-input{
@@ -179,7 +188,7 @@ a:hover{
     font-weight: bold;
     margin-top: 15%;
     font-family: Georgia;
-    font-size: 3em;
+    font-size: 4em;
 }
 
     #parag {
@@ -199,7 +208,7 @@ a:hover{
     padding: 1%;
     width: 30%;
     background-color: #fffdf6;
-    border-color: #381d1b;
+    border-color: #f8f9fa;
 }
 
 #cook.form-control {
@@ -210,13 +219,10 @@ a:hover{
 }
 
 .table {
-    background-color: #fffdf6;
+    background-color: #e3e3e3eb;
     border-color: #381d1b;
 }
 
-.recipe-box {
-    box-shadow: 1px 0px 20px 0px #381d1b54;
-}
 
 .bg-layout {
     background-image: url(../food.jpg);
@@ -225,7 +231,36 @@ a:hover{
 }
 
 .login-bg {
-    background-image: url(../login.jpg);
+    background-image: url(../login1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.account-bg {
+    background-image: url(../account.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#email-verification {
+    color: #f8f9fa;
+}
+
+#personal-data {
+    color: #381d1b;
+    font-weight: bolder;
+    font-size: medium;
+    background-color: hwb(210deg 68% 26% / 38%);
+    opacity: 0.9
+}
+
+.create-bg {
+    background-image: url(../create.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.form-group{
+    border-color: antiquewhite;
+    border-radius: 20%;
 }
