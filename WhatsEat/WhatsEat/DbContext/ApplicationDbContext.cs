@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Reflection.Emit;
+using WhatsEat.Areas.Identity.Data;
 using WhatsEat.Models;
 
-namespace WhatsEat.Areas.Identity.Data;
+namespace WhatsEat.DbContext;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
 {

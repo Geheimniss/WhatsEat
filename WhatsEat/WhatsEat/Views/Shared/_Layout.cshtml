@@ -24,12 +24,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">            
-                       @if (User.IsInRole("Администратор"))
+                    <ul class="navbar-nav flex-grow-1">   
+                        <li class="nav-item">
+                            <a class="nav-link" id="manage" asp-area="" asp-controller="Recipes" asp-action="Index">Рецепты</a>
+                        </li>
+                        @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер") || User.IsInRole("Пользователь"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" id="manage" asp-area="" asp-controller="User" asp-action="Index">Пользователи</a>
+                                <a class ="nav-link" id="manage" asp-area="" asp-controller="Fridge" asp-action="Index">Холодильник</a>
                             </li>
+                        }
+                        @if (User.IsInRole("Администратор"))
+                        {
+                             <li class="nav-item">
+                                 <a class="nav-link" id="manage" asp-area="" asp-controller="User" asp-action="Index">Пользователи</a>
+                             </li>
                         }
                     </ul>
                 </div>

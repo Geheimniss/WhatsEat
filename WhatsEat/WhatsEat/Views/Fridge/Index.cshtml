@@ -1,13 +1,8 @@
-﻿@model WhatsEat.ViewModel.UserFridgeViewModel
+﻿@model WhatsEat.ViewModel.UserFridgeVM
 @{
 }
 <h1>Холодильник</h1>
 <table class="table table-bordered table-dark">
-    @*<thead>
-    <th>
-    Холодильник
-    </th>
-    </thead>*@
     <tbody>
         @foreach (ProductType type in Model.ProductTypes)
         {
@@ -20,7 +15,12 @@
                     {
                         @if (product.productType.Name == type.Name)
                         {
-                           <span class="badge bg-light text-dark">@product.Name</span>
+                            @*TODO: Возможность удалять продукты*@
+                            <a asp-action="DeleteProduct" asp-route-id="@product.Id">
+                                <span class="badge bg-light text-dark">
+                                    @product.Name
+                                </span>
+                            </a>
                         }
                     }
                 </td>

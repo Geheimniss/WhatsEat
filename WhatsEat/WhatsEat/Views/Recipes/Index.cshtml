@@ -1,33 +1,57 @@
-﻿@model IEnumerable<Recipe>
+﻿@model WhatsEat.ViewModel.RecipesListVM
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Рецепты";
 }
 
-<h1>Index</h1>
+<h1>Книга рецептов</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (User.IsInRole("Администратор")|| User.IsInRole("Менеджер"))
+    {
+        <a asp-action="Create">Добавить новый рецепт</a>
+    }
 </p>
+<form method="get">
+    <div>
+        <label>Название: </label>
+        <input asp-for="RecipeName" />
+
+        <label>Тип блюда: </label>
+        <select name="recipeTypeId" asp-items="Model.RecipeTypes"></select>
+
+        <label>Сложность приготовления: </label>
+        <select name="difficulty" asp-items="Model.Difficulties"></select>
+
+        <label>Страна происхождения: </label>
+        <select name="countryId" asp-items="Model.Countries"></select>
+
+        <input type="submit" value="Фильтр" />
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Рецепт
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Recipes)
         {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
+                    }
                 </td>
             </tr>
         }

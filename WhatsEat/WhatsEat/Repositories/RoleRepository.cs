@@ -1,6 +1,6 @@
-﻿using WhatsEat.Areas.Identity.Data;
-using WhatsEat.Core.Repositories;
+﻿using WhatsEat.Core.Repositories;
 using Microsoft.AspNetCore.Identity;
+using WhatsEat.DbContext;
 
 namespace WhatsEat.Repositories
 {

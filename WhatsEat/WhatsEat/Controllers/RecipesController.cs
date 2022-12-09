@@ -1,15 +1,11 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WhatsEat.Areas.Identity.Data;
 using WhatsEat.Models;
 using WhatsEat.ViewModel;
-using System.Security.Cryptography.Xml;
+using Microsoft.AspNetCore.Authorization;
+using WhatsEat.DbContext;
+using WhatsEat.Core;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using WhatsEat.Views.Fridge;
 
@@ -27,9 +23,43 @@ namespace WhatsEat.Controllers
         }
 
         // GET: Recipes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? recipeName, int? recipeTypeId, int? countryId, string? difficulty)
         {
-            return View(await _context.Recipes.ToListAsync());
+            IQueryable<Recipe> recipes = _context.Recipes.Include(r => r.recipeDetails).ThenInclude(c=>c.country);
+            if (recipeTypeId != null && recipeTypeId != 0)
+            {
+                recipes = recipes.Where(p => p.recipeDetails.country.Id == recipeTypeId);
+            }
+
+            if (countryId != null && countryId != 0)
+            {
+                recipes = recipes.Where(r => r.recipeDetails.countryId == countryId);
+            }
+
+            if (!string.IsNullOrEmpty(difficulty) && difficulty != "Все")
+            {
+                recipes = recipes.Where(r => r.recipeDetails.difficulty == difficulty);
+            }
+            
+
+            if (!string.IsNullOrEmpty(recipeName))
+            {
+                recipes = recipes.Where(p => p.Name!.Contains(recipeName));
+            }
+
+            List<RecipeType> recipeTypes = await _context.RecipeType.ToListAsync();
+            List<Country> countries = await _context.Countries.ToListAsync();
+            List<string> difficulties = new List<string>() { "Легко", "Нормально", "Сложно" };
+            recipeTypes.Insert(0, new RecipeType { Name = "Все", Id = 0 });
+            difficulties.Insert(0, "Все");
+            RecipesListVM vm = new RecipesListVM
+            {
+                Recipes = recipes,
+                Countries = new SelectList(countries, "Id", "Name", countryId),
+                Difficulties = new SelectList(difficulties, "Name"),
+                RecipeTypes = new SelectList(recipeTypes, "Id", "Name", recipeTypeId)
+            };
+            return View(vm);
         }
 
         // GET: Recipes/Details/5
@@ -62,6 +92,7 @@ namespace WhatsEat.Controllers
         }
 
         // GET: Recipes/Create
+        [Authorize(Roles = $"{Constants.Roles.Administrator},{Constants.Roles.Manager}")]
         public IActionResult Create()
         {
             //ICollection<Product> products = _context.Products.ToList();
@@ -114,6 +145,7 @@ namespace WhatsEat.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Constants.Roles.Administrator},{Constants.Roles.Manager}")]
         public async Task<IActionResult> Create(RecipeVM recipeModel)
         {
             ModelState.Remove("SelectListRecipeTypes");
@@ -130,6 +162,12 @@ namespace WhatsEat.Controllers
             ModelState.Remove("RecipeImage");
             if (ModelState.IsValid)
             {
+                if(_context.Recipes.Where(r=>r.Name == recipeModel.RecipeName).FirstOrDefault() != null)
+                {
+                    return RedirectToAction(nameof(Index));
+                    //TODO: Страница с оповещением, что данный рецепт уже существует
+                }
+
                 Recipe recipe = new Recipe();
                 RecipeDetails recipeDetails = new RecipeDetails();
                 if (recipeModel.Photo != null)
@@ -139,6 +177,10 @@ namespace WhatsEat.Controllers
                     string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
                     await recipeModel.Photo.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
                     recipeDetails.recipeImage = "/" + folder;
+                }
+                else
+                {
+                    recipeDetails.recipeImage = "/images/recipeimages/defaultRecipeImage.png";
                 }
                 recipe.Name = recipeModel.RecipeName;
                 _context.Recipes.Add(recipe);
@@ -164,6 +206,7 @@ namespace WhatsEat.Controllers
         }
 
         // GET: Recipes/Delete/5
+        [Authorize(Roles = $"{Constants.Roles.Administrator},{Constants.Roles.Manager}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Recipes == null)
@@ -184,6 +227,7 @@ namespace WhatsEat.Controllers
         // POST: Recipes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Constants.Roles.Administrator},{Constants.Roles.Manager}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Recipes == null)

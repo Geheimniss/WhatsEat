@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WhatsEat.Areas.Identity.Data;
 using WhatsEat.Core;
 using WhatsEat.Core.Repositories;
+using WhatsEat.DbContext;
 using WhatsEat.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -10,7 +10,7 @@ namespace WhatsEat.ViewModel
         public string RecipeName { get; set; }
         public string RecipeShortDescription { get; set; }
         public string RecipeDescription { get; set; }
-        public string RecipeImage { get; set; }
+        public string? RecipeImage { get; set; }
         public int CountryId { get; set; }
         public Country Country { get; set; }
         public int RecipeTypeId { get; set; }
@@ -22,6 +22,6 @@ namespace WhatsEat.ViewModel
         public SelectList SelectListDifficulties { get; set; }
         public IEnumerable<Product> Products { get; set; }
         public IEnumerable<ProductType> ProductTypes { get; set; }
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using WhatsEat.Areas.Identity.Data;
 using WhatsEat.Core.Repositories;
+using WhatsEat.DbContext;
 
 namespace WhatsEat.Repositories
 {

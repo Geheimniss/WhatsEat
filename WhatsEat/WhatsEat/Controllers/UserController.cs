@@ -4,6 +4,8 @@ using WhatsEat.Core.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using WhatsEat.Core;
 
 namespace WhatsEat.Controllers
 {
@@ -24,6 +26,7 @@ namespace WhatsEat.Controllers
             return View(users);
         }
 
+        [Authorize (Roles = $"{Constants.Roles.Administrator}")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _unitOfWork.User.GetUser(id);
@@ -47,6 +50,8 @@ namespace WhatsEat.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{Constants.Roles.Administrator}")]
+
         public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
         {
             var user = _unitOfWork.User.GetUser(data.User.Id);

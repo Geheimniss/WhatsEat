@@ -1,7 +1,7 @@
 ﻿using WhatsEat.Models;
 using WhatsEat.Views.Fridge;
 
-namespace WhatsEat.ViewModels
+namespace WhatsEat.ViewModel
 {
     public class ProductVM
     {

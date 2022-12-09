@@ -1,6 +1,4 @@
-﻿using WhatsEat.Models;
-
-namespace WhatsEat.Views.Fridge
+﻿namespace WhatsEat.Views.Fridge
 {
     public class CheckBoxOption
     {
