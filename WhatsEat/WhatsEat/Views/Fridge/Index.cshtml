@@ -1,11 +1,17 @@
 ﻿@model WhatsEat.ViewModel.UserFridgeVM
 @{
 }
-<h1>Холодильник</h1>
-<table class="table table-bordered table-dark">
-    <tbody>
-        @foreach (ProductType type in Model.ProductTypes)
-        {
+<body class="fridge-bg">
+    <h1>Холодильник</h1>
+    <table class="table table-bordered" id="fridge" style="width: 91%; margin-left: auto; margin-right: auto;">
+        @*<thead>
+            <th>
+            Холодильник
+            </th>
+            </thead>*@
+        <tbody>
+            @foreach (ProductType type in Model.ProductTypes)
+            {
             <tr>
                 <th scope="col" width=15%>
                     @type.Name
@@ -13,23 +19,24 @@
                 <td>
                     @foreach (var product in @Model.Products)
                     {
-                        @if (product.productType.Name == type.Name)
-                        {
+                    @if (product.productType.Name == type.Name)
+                    {
                             @*TODO: Возможность удалять продукты*@
                             <a asp-action="DeleteProduct" asp-route-id="@product.Id">
                                 <span class="badge bg-light text-dark">
                                     @product.Name
                                 </span>
                             </a>
-                        }
+                    }
                     }
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
-<div>
-    <a asp-action="AddProducts" class="btn-outline-dark">
-        Добавить продукты
-    </a>
-</div>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="AddProducts" class="btn-outline-dark">
+            Добавить продукты
+        </a>
+    </div>
+</body>
