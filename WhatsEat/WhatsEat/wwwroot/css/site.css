@@ -297,3 +297,18 @@ a:hover{
     margin-right: auto;
 }
 
+.fridge-bg {
+    background-image: url(../fridge.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#fridge.table {
+    background-color: #212529c7;
+    color: #fff;
+    border-color: #adb5bd;
+}
+
+h1.fridge-bg {
+    color:#adb5bd;
+}
