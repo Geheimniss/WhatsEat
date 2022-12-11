@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Рецепты";
 }
-
+<body class="recipe-bg">
 <h1>Книга рецептов</h1>
 
 <p>
@@ -13,48 +13,42 @@
     }
 </p>
 <form method="get">
-    <div>
+    <div class="search">
+        <div class="search-row">
         <label>Название: </label>
         <input asp-for="RecipeName" />
-
+        </div>
+        <div class="search-row">
         <label>Тип блюда: </label>
         <select name="recipeTypeId" asp-items="Model.RecipeTypes"></select>
-
+       </div>
+        <div class="search-row">
         <label>Сложность приготовления: </label>
         <select name="difficulty" asp-items="Model.Difficulties"></select>
-
+         </div>
+        <div class="search-row">
         <label>Страна происхождения: </label>
         <select name="countryId" asp-items="Model.Countries"></select>
-
+         </div>
         <input type="submit" value="Фильтр" />
     </div>
 </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Рецепт
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
         @foreach (var item in Model.Recipes)
-        {
-            <tr>
-                <td>
+        {  
+            <div class="recipe-row">
+            <div class="recipe-show">
+
                     @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
+
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
                     @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер"))
                     {
                         <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
                     }
-                </td>
-            </tr>
+                </div>
+                    </div>
+                    
         }
-    </tbody>
-</table>
 
+</body>
