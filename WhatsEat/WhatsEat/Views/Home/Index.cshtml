@@ -2,26 +2,32 @@
     ViewData["Title"] = "Home Page";
 }
 
-<body class="bg-layout" >
-<div class="" style="text-align:center">
-  
+<body class="bg-layout">
+    <div class="" style="text-align:center">
+
         <h1 id="header">Whats Eat?</h1>
         <br />
         <p1 id="parag">
             Whats Eat - поиск рецептов по ингредиентам. <br>
             Он подскажет, какие рецепты можно приготовить <br>
             из того что есть в вашем холодильнике прямо сейчас.
-   
-      <div style="position:relative; margin-top: 2%;">
-            <form asp-controller="Recipes" asp-action="Index">
-                <button id="body-btn" type="submit" class="btn btn-lg btn-primary">Искать рецепты</button>
-            </form>
-        </div>
-           <div style="position:relative; margin-top: 2%;">
-            <p id="p">* Чтобы получить доступ к личному холодильнику необходимо Авторизоваться</p>
-        </div>
-    </div>
 
+            <div style="position:relative; margin-top: 2%;">
+                <form asp-controller="Recipes" asp-action="Index">
+                    <button id="body-btn" type="submit" class="btn btn-lg btn-primary">Искать рецепты</button>
+                </form>
+                <br />
+                @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер") || User.IsInRole("Пользователь"))
+                {
+                    <form asp-controller="Fridge" asp-action="Index">
+                        <button id="body-btn" type="submit" class="btn btn-lg btn-primary">Мой холодильник</button>
+                    </form>
+                }
+            </div>
+            <div style="position:relative; margin-top: 2%;">
+                <p id="p">* Чтобы получить доступ к личному холодильнику необходимо Авторизоваться</p>
+            </div>
+    </div>
 </body>
 
 
