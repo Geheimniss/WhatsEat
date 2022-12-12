@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WhatsEat.Models
 {
+    /// <summary>
+    /// Детали рецепта
+    /// </summary>
     public class RecipeDetails
     {
         public int Id { get; set; }

@@ -3,52 +3,80 @@
 @{
     ViewData["Title"] = "Рецепты";
 }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js"></script>
 <body class="recipe-bg">
-<h1>Книга рецептов</h1>
+    <h1>Книга рецептов</h1>
 
-<p>
-    @if (User.IsInRole("Администратор")|| User.IsInRole("Менеджер"))
-    {
-        <a asp-action="Create">Добавить новый рецепт</a>
-    }
-</p>
-<form method="get">
+    <p>
+        @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер"))
+        {
+            <a asp-action="Create">Добавить новый рецепт</a>
+        }
+    </p>
+    @*<form method="get">
+    <div class="tox-form__group">
+
     <div class="search">
-        <div class="search-row">
-        <label>Название: </label>
-        <input asp-for="RecipeName" />
-        </div>
-        <div class="search-row">
-        <label>Тип блюда: </label>
-        <select name="recipeTypeId" asp-items="Model.RecipeTypes"></select>
-       </div>
-        <div class="search-row">
-        <label>Сложность приготовления: </label>
-        <select name="difficulty" asp-items="Model.Difficulties"></select>
-         </div>
-        <div class="search-row">
-        <label>Страна происхождения: </label>
-        <select name="countryId" asp-items="Model.Countries"></select>
-         </div>
-        <input type="submit" value="Фильтр" />
+    <div class="search-row">
+    <label>Название: </label>
+    <input asp-for="RecipeName" />
     </div>
-</form>
+    <div class="search-row">
+    <label>Тип блюда: </label>
+    <select name="recipeTypeId" asp-items="Model.RecipeTypes"></select>
+    </div>
+    <div class="search-row">
+    <label>Сложность приготовления: </label>
+    <select name="difficulty" asp-items="Model.Difficulties"></select>
+    </div>
+    <div class="search-row">
+    <label>Страна происхождения: </label>
+    <select name="countryId" asp-items="Model.Countries"></select>
+    </div>
+    <input type="submit" value="Фильтр" />
+    </div>
+    </div>
 
-        @foreach (var item in Model.Recipes)
-        {  
-            <div class="recipe-row">
+    </form>*@
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="text-center">Multi-select</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                @Html.ListBox("Ingredients", ViewBag.Ingredients as SelectList, new { style = "width:100%" })
+            </div>
+        </div>
+    </div>
+
+    @foreach (var item in Model.Recipes)
+    {
+        <div class="recipe-row">
             <div class="recipe-show">
 
-                    @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Name)
 
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                    @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер"))
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
-                    }
-                </div>
-                    </div>
-                    
-        }
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер"))
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
+                }
+                <img src="@item.recipeDetails.recipeImage">
+            </div>
+        </div>
 
+    }
 </body>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Ingredients").chosen();
+        });
+    </script>
+}

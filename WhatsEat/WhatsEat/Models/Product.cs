@@ -3,6 +3,9 @@ using WhatsEat.Areas.Identity.Data;
 
 namespace WhatsEat.Models
 {
+    /// <summary>
+    /// Продукт
+    /// </summary>
     public class Product : EntityBaseClass
     {
         public List<RecipeDetails> recipeDetails { get; set; } = new List<RecipeDetails>();

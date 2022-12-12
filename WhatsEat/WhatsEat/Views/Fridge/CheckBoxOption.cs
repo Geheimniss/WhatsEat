@@ -1,5 +1,8 @@
 ﻿namespace WhatsEat.Views.Fridge
 {
+    /// <summary>
+    /// Чекбокс для мультвыборки
+    /// </summary>
     public class CheckBoxOption
     {
         public bool isChecked { get; set; }

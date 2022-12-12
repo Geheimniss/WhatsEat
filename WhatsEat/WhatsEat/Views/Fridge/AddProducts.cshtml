@@ -2,8 +2,7 @@
 @model WhatsEat.ViewModel.ProductVM
 
 <head>
-    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
-          rel="stylesheet" type="text/css" />
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
 </head>
 
@@ -42,7 +41,5 @@
 
 @section Scripts
     {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }

@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "v1n0NCfqaC8GlBe/MhPIIzs60rBNDnVqBNA5XxzrZITsM8JF2TcLvhYVWzEl4plUwXWiN4J5jYwbRWgWTE/wuw==",
+  "dgSpecHash": "DoQcFcZdVZsaANVEm52hDuVqnl7eFGur2jXZ8ch4J+OgESLZltNMqu8VhipUI5PhZnH3yN+WgXbvEnmlNqFwyA==",
   "success": true,
   "projectFilePath": "D:\\WhatsEat\\WhatsEat\\WhatsEat\\WhatsEat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\chosen\\1.2.0\\chosen.1.2.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.0\\microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.0\\microsoft.aspnetcore.cryptography.keyderivation.6.0.0.nupkg.sha512",

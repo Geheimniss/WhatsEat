@@ -9,23 +9,40 @@ using WhatsEat.Core;
 
 namespace WhatsEat.Controllers
 {
+    /// <summary>
+    /// Контроллер для пользователя
+    /// </summary>
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
+        /// <summary>
+        /// Стандартный конструктор контроллера
+        /// </summary>
+        /// <param name="unitOfWork"></param>
+        /// <param name="signInManager"></param>
         public UserController(IUnitOfWork unitOfWork, SignInManager<ApplicationUser> signInManager)
         {
             _unitOfWork = unitOfWork;
             _signInManager = signInManager;
         }
 
+        /// <summary>
+        /// Главная страница контроллера
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             var users = _unitOfWork.User.GetUsers();
             return View(users);
         }
 
+        /// <summary>
+        /// Редактирование выбранного пользователя
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize (Roles = $"{Constants.Roles.Administrator}")]
         public async Task<IActionResult> Edit(string id)
         {
@@ -51,7 +68,6 @@ namespace WhatsEat.Controllers
 
         [HttpPost]
         [Authorize(Roles = $"{Constants.Roles.Administrator}")]
-
         public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
         {
             var user = _unitOfWork.User.GetUser(data.User.Id);

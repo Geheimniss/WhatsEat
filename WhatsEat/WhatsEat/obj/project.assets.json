@@ -46,6 +46,9 @@
           }
         }
       },
+      "chosen/1.2.0": {
+        "type": "package"
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1345,6 +1348,20 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "chosen/1.2.0": {
+      "sha512": "nrcF57kN5LRb/drcnK43W+cDKuAxDXhVlTBI4wOmm2eTjQW1/nRjV/G9zs+xavsgtquTH7CeJbYDbZZOsMrABw==",
+      "type": "package",
+      "path": "chosen/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "chosen.1.2.0.nupkg.sha512",
+        "chosen.nuspec",
+        "content/Content/chosen-sprite.png",
+        "content/Content/chosen-sprite@2x.png",
+        "content/Content/chosen.css"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -3913,7 +3930,8 @@
       "Microsoft.AspNetCore.Identity.UI >= 6.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.0",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.0"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.0",
+      "chosen >= 1.2.0"
     ]
   },
   "packageFolders": {
@@ -3976,6 +3994,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "chosen": {
+            "target": "Package",
+            "version": "[1.2.0, )"
           }
         },
         "imports": [
