@@ -3,12 +3,12 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<body class="recipe-details">
+    <img id="recipe-details-logo" src="../recipe-details.png" />
 
 <div>
-    <h4>Recipe</h4>
-    <hr />
-    <img src="@Model.RecipeImage" />
+
+    <img id="detail-img" src="@Model.RecipeImage" />
     <dl class="row">
         <dt class="col-sm-2">
             Ингредиенты:
@@ -55,5 +55,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
+</body>
