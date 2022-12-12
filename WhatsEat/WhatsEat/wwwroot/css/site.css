@@ -319,30 +319,33 @@ p2 {
 }
 
 .search {
-    background-color: #21282e;
-    color: #e9ecef;
-    width: 70%;
-    padding: 20px;
+   /* padding: 50px;
+    background-color: #41464b;
+    box-sizing: border-box;
+    border-radius: 40px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 20px;
+    color: #f8f9fa;
     font-family: georgia;
-    font-size: large;
     font-weight: 100;
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    row-gap: 5px;*/
 }
 
 .search-row {
-    display: table-cell;
-    width: 10%;
+    display: flex;
+    flex-direction: column;
 }
 
 #RecipeName {
     border-radius: 100px;
-    background-color: #e9ecef;
+    background-color: #f8f9fa;
     outline: none;
     border: none;
-    padding: 1px 10px;
-    width: 150px;
+    padding: 5px 15px;
 }
 
     #RecipeName:focus {
@@ -352,7 +355,7 @@ p2 {
     }
 
 .recipe-bg {
-    background-image: url(../details1.jpg);
+    background-image: url(../recipe.jpg);
     background-attachment: fixed;
     background-size: cover;
 }
@@ -363,68 +366,15 @@ p2 {
 }
 
 .recipe-show {
+    border-radius: 1px;
     border: 1px;
     width: 300px;
-    height: 230px;
+    height: 200px;
     align-content: center;
-    padding: 15px;
+    padding: 10px;
+    background-color: #e9ecefeb;
     margin-left: 50px;
-    color: #dee2e6;
-    font-size: x-large;
-    font-family: georgia;
-    text-align: center;
-    background-color: #212529e3;
-    border-radius: 10px;
 }
 
-.select {
-    word-wrap: normal;
-    border-radius: 100px;
-    background-color: #e9ecef;
-    outline: none;
-    border: none;
-    padding: 1px 10px;
-    width: 150px;
-}
 
-#filter-btn {
-    margin-top: 15px;
-    background-color: #41464b;
-    color: #e9ecef;
-    outline-color: #f8f9fa;
-    border-color: #6c757d;
-    border-radius: 5px;
-}
 
-#recipe-logo {
-    vertical-align: middle;
-    margin-left: 35%;
-    max-width: 27%;
-}
-
-#recipe-img {
-    max-width: 90%;
-}
-
-#detail-img {
-    max-width: 50%;
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-dl.row {
-    background-color: #d7d5d5a3;
-    padding: 20px;
-    color: #212529;
-}
-
-a {
-    color: #dee2e6;
-    font-size: smaller;
-}
-
-.recipe-details {
-    background-image: url(../food.jpg);
-    background-attachment: fixed;
-    background-size: cover;
-}
