@@ -78,6 +78,33 @@ namespace WhatsEat.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> DeleteProduct(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = await _context.Users.Include(p=>p.UserProducts).FirstOrDefaultAsync(m => m.Id == userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var product = user.UserProducts.FirstOrDefault(p => p.Id == id);
+            return View(product);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteProductConfirmed(int id)
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _context.Users.Include(u => u.UserProducts).Where(u=>u.Id == userId).FirstOrDefault();
+            var product = user.UserProducts.Where(p=>p.Id == id).FirstOrDefault();
+            user.UserProducts.Where(p=>p.Id == id).FirstOrDefault();
+            return RedirectToAction(nameof(Index));
+        }
         //// GET: FridgeController/Edit/5
         //public IActionResult Edit(int id)
         //{
