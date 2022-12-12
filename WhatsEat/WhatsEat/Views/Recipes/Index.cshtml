@@ -4,12 +4,13 @@
     ViewData["Title"] = "Рецепты";
 }
 <body class="recipe-bg">
-<h1>Книга рецептов</h1>
+<img id="recipe-logo" src="../recipe-logo.png"> />
 
 <p>
     @if (User.IsInRole("Администратор")|| User.IsInRole("Менеджер"))
     {
         <a asp-action="Create">Добавить новый рецепт</a>
+        
     }
 </p>
 <form method="get">
@@ -20,17 +21,17 @@
         </div>
         <div class="search-row">
         <label>Тип блюда: </label>
-        <select name="recipeTypeId" asp-items="Model.RecipeTypes"></select>
+        <select class="select" name="recipeTypeId" asp-items="Model.RecipeTypes"></select>
        </div>
         <div class="search-row">
         <label>Сложность приготовления: </label>
-        <select name="difficulty" asp-items="Model.Difficulties"></select>
+        <select class="select" name="difficulty" asp-items="Model.Difficulties"></select>
          </div>
         <div class="search-row">
         <label>Страна происхождения: </label>
-        <select name="countryId" asp-items="Model.Countries"></select>
+        <select class="select" name="countryId" asp-items="Model.Countries"></select>
          </div>
-        <input type="submit" value="Фильтр" />
+        <input id="filter-btn" type="submit" value="Искать" />
     </div>
 </form>
 
@@ -39,12 +40,13 @@
             <div class="recipe-row">
             <div class="recipe-show">
 
-                    @Html.DisplayFor(modelItem => item.Name)
-
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    <img id="recipe-img" src="@item.recipeDetails.recipeImage">
+                    @*@Html.DisplayFor(modelItem => item.Name)*@
+                    
+                    <a asp-action="Details" asp-route-id="@item.Id">@item.Name</a> 
                     @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер"))
                     {
-                        <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"> Удалить</a>
                     }
                 </div>
                     </div>
